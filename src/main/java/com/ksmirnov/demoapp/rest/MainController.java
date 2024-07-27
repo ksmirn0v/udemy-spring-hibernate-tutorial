@@ -1,10 +1,16 @@
 package com.ksmirnov.demoapp.rest;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class MainController {
+
+    @Value("${app.user.name}")
+    private String userName;
+    @Value("${app.user.team}")
+    private String userTeam;
 
     // expose "/" that returns "Hello World"
     @GetMapping("/")
@@ -22,5 +28,10 @@ public class MainController {
     @GetMapping("/fortune")
     public String getDailyFortune() {
         return "Today is your lucky day!";
+    }
+
+    @GetMapping("/teaminfo")
+    public String getTeamInfo() {
+        return "user name: " + userName + ", user team: " + userTeam;
     }
 }
