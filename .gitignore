@@ -15,7 +15,7 @@
 
 # Maven files
 .mvn/
-target/n
+target/
 
 # Package Files #
 *.jar
