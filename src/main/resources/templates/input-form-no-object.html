@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <title>Show Form</title>
+    </head>
+
+    <body>
+        <form th:action="@{/processFormNoObject}" method="POST">
+            <input type="text" name="userName" placeholder="What's your name?" />
+            <input type="submit" />
+        </form>
+    </body>
+
+</html>
