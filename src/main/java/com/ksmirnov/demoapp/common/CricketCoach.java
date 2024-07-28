@@ -1,4 +1,4 @@
-package com.ksmirnov.demoapp;
+package com.ksmirnov.demoapp.common;
 
 import org.springframework.stereotype.Component;
 

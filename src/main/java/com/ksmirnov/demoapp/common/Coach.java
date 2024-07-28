@@ -1,4 +1,4 @@
-package com.ksmirnov.demoapp;
+package com.ksmirnov.demoapp.common;
 
 public interface Coach {
 
