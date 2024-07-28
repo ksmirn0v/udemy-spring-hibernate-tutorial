@@ -1,37 +1,24 @@
 package com.ksmirnov.demoapp.rest;
 
-import org.springframework.beans.factory.annotation.Value;
+import com.ksmirnov.demoapp.Coach;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class MainController {
 
-    @Value("${app.user.name}")
-    private String userName;
-    @Value("${app.user.team}")
-    private String userTeam;
+    // define a private field for the dependency
+    private Coach coach;
 
-    // expose "/" that returns "Hello World"
-    @GetMapping("/")
-    public String sayHello() {
-        return "Hello World!";
+    // define a constructor for dependency injection
+    @Autowired
+    MainController(Coach coach) {
+        this.coach = coach;
     }
 
-    // expose a new endpoint for "workout"
-    @GetMapping("/workout")
+    @GetMapping("/dailyworkout")
     public String getDailyWorkout() {
-        return "Run a hard 5k!";
-    }
-
-    // expose a new endpoint for "fortune"
-    @GetMapping("/fortune")
-    public String getDailyFortune() {
-        return "Today is your lucky day!";
-    }
-
-    @GetMapping("/teaminfo")
-    public String getTeamInfo() {
-        return "user name: " + userName + ", user team: " + userTeam;
+        return coach.getDailyWorkout();
     }
 }
