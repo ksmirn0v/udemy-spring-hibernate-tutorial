@@ -9,18 +9,28 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MainController {
 
-    // define a private field for the dependency
+    // define private fields for the dependency
     private Coach coach;
+    private Coach anotherCoach;
 
     // define a constructor for dependency injection
     @Autowired
-    public MainController(@Qualifier("cricketCoach") Coach coach) {
+    public MainController(
+        @Qualifier("cricketCoach") Coach coach,
+        @Qualifier("cricketCoach") Coach anotherCoach
+    ) {
         System.out.println("In constructor: " + this.getClass().getSimpleName());
         this.coach = coach;
+        this.anotherCoach = anotherCoach;
     }
 
     @GetMapping("/dailyworkout")
     public String getDailyWorkout() {
         return coach.getDailyWorkout();
+    }
+
+    @GetMapping("/check")
+    public String check() {
+        return "Comparing beans: coach == anotherCoach, " + (coach == anotherCoach);
     }
 }
