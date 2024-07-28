@@ -2,7 +2,6 @@ package com.ksmirnov.demoapp.rest;
 
 import com.ksmirnov.demoapp.common.Coach;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,7 +13,7 @@ public class MainController {
 
     // define a constructor for dependency injection
     @Autowired
-    public MainController(@Qualifier("tennisCoach") Coach coach) {
+    public MainController(Coach coach) {
         this.coach = coach;
     }
 
