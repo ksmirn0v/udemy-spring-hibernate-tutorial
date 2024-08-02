@@ -7,8 +7,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import java.util.List;
-
 @SpringBootApplication
 public class DemoappApplication {
 
@@ -19,23 +17,20 @@ public class DemoappApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
 		return runner -> {
-			readStudents(studentDAO);
+			updateStudent(studentDAO);
 		};
 	}
 
-	private void readStudents(StudentDAO studentDAO) {
+	private void updateStudent(StudentDAO studentDAO) {
 
-		System.out.println("Retrieving all the students");
-		List<Student> students = studentDAO.findAll();
+		System.out.println("Retrieve a student based on the id");
+		int id = 2;
+		Student student = studentDAO.findById(id);
 
-		for (Student student : students) {
-			System.out.println(student);
-		}
+		System.out.println("Change e-mail address");
+		student.setEmail("mbob@mail.com");
 
-		System.out.println("Retrieving students with the last name = Bobick");
-		students = studentDAO.findByLastName("Bobick");
-		for (Student student : students) {
-			System.out.println(student);
-		}
+		System.out.println("Updating the student");
+		studentDAO.update(student);
 	}
 }
