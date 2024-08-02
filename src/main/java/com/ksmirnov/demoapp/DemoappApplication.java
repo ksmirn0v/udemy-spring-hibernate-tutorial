@@ -17,13 +17,18 @@ public class DemoappApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
 		return runner -> {
-			deleteStudents(studentDAO);
+			readStudents(studentDAO);
 		};
 	}
 
-	private void deleteStudents(StudentDAO studentDAO) {
+	private void readStudents(StudentDAO studentDAO) {
 
-		System.out.println("Deleting all students");
-		studentDAO.deleteAll();
+		System.out.println("Creating new student objects");
+		Student student1 = new Student("John", "Doe", "jdoe@mail.com");
+		Student student2 = new Student("Michael", "Bobick", "mbobick@mail.com");
+
+		System.out.println("Saving the new student objects");
+		studentDAO.save(student1);
+		studentDAO.save(student2);
 	}
 }
