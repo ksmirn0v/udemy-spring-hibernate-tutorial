@@ -17,18 +17,24 @@ public class DemoappApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
 		return runner -> {
-			createStudent(studentDAO);
+			readStudents(studentDAO);
 		};
 	}
 
-	private void createStudent(StudentDAO studentDAO) {
+	private void readStudents(StudentDAO studentDAO) {
 
-		System.out.println("Creating a new student object");
-		Student student = new Student("Kirill", "Smirnov", "ksmirnov@mail.com");
+		System.out.println("Creating new student objects");
+		Student student1 = new Student("John", "Doe", "jdoe@mail.com");
+		Student student2 = new Student("Michael", "Bobick", "mbobick@mail.com");
 
-		System.out.println("Saving the new student object");
-		studentDAO.save(student);
+		System.out.println("Saving the new student objects");
+		studentDAO.save(student1);
+		studentDAO.save(student2);
 
-		System.out.println("The id of the saved student = " + student.getId());
+		int id = 1;
+		System.out.println("Retrieving a student with id = " + id);
+		Student student = studentDAO.findById(id);
+
+		System.out.println("Retrieved student: " + student);
 	}
 }
