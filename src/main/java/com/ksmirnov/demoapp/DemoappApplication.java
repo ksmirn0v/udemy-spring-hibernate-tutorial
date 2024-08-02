@@ -7,6 +7,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.List;
+
 @SpringBootApplication
 public class DemoappApplication {
 
@@ -23,18 +25,11 @@ public class DemoappApplication {
 
 	private void readStudents(StudentDAO studentDAO) {
 
-		System.out.println("Creating new student objects");
-		Student student1 = new Student("John", "Doe", "jdoe@mail.com");
-		Student student2 = new Student("Michael", "Bobick", "mbobick@mail.com");
+		System.out.println("Retrieving all the students");
+		List<Student> students = studentDAO.findAll();
 
-		System.out.println("Saving the new student objects");
-		studentDAO.save(student1);
-		studentDAO.save(student2);
-
-		int id = 1;
-		System.out.println("Retrieving a student with id = " + id);
-		Student student = studentDAO.findById(id);
-
-		System.out.println("Retrieved student: " + student);
+		for (Student student : students) {
+			System.out.println(student);
+		}
 	}
 }
