@@ -31,5 +31,11 @@ public class DemoappApplication {
 		for (Student student : students) {
 			System.out.println(student);
 		}
+
+		System.out.println("Retrieving students with the last name = Bobick");
+		students = studentDAO.findByLastName("Bobick");
+		for (Student student : students) {
+			System.out.println(student);
+		}
 	}
 }
