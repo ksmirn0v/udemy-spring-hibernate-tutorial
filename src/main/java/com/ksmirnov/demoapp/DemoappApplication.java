@@ -17,14 +17,13 @@ public class DemoappApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
 		return runner -> {
-			deleteStudent(studentDAO);
+			deleteStudents(studentDAO);
 		};
 	}
 
-	private void deleteStudent(StudentDAO studentDAO) {
+	private void deleteStudents(StudentDAO studentDAO) {
 
-		System.out.println("Deleting a student based on the id");
-		int id = 2;
-		studentDAO.delete(id);
+		System.out.println("Deleting all students");
+		studentDAO.deleteAll();
 	}
 }
