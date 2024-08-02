@@ -17,20 +17,14 @@ public class DemoappApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
 		return runner -> {
-			updateStudent(studentDAO);
+			deleteStudent(studentDAO);
 		};
 	}
 
-	private void updateStudent(StudentDAO studentDAO) {
+	private void deleteStudent(StudentDAO studentDAO) {
 
-		System.out.println("Retrieve a student based on the id");
+		System.out.println("Deleting a student based on the id");
 		int id = 2;
-		Student student = studentDAO.findById(id);
-
-		System.out.println("Change e-mail address");
-		student.setEmail("mbob@mail.com");
-
-		System.out.println("Updating the student");
-		studentDAO.update(student);
+		studentDAO.delete(id);
 	}
 }
